@@ -38,15 +38,43 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach ($products as $product)
+                    {{-- @foreach ($products as $product)
                             <tr>
                                 <th scope="row">{{ $product->id }}</th>
                                 <th>{{ $product->user->name }}</th>
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->brand->name }}</td>
-
+                                <td>
+                                    @foreach ($product->attributes as $attribute)
+                                        <span class="badge bg-primary">
+                                            {{ $attribute->name }}
+                                        </span>
+                                    @endforeach
+                                </td>
                             </tr>
-                        @endforeach
+                        @endforeach --}}
+
+                        @foreach ($products as $product)
+    <tr>
+        <td>{{ $product->name }}</td>
+
+        <td>
+            @foreach ($product->attributes as $attribute)
+
+                <div>
+                    <strong>{{ $attribute->name }}:</strong>
+
+                    @foreach ($attribute->values as $value)
+                        <span class="px-2 py-1 text-xs bg-gray-200 rounded">
+                            {{ $value->value }}
+                        </span>
+                    @endforeach
+                </div>
+
+            @endforeach
+        </td>
+    </tr>
+@endforeach
 
                     </tbody>
                 </table>

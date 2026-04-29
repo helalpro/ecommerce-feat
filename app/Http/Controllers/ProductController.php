@@ -7,6 +7,8 @@ use App\Models\Product;
 use App\Models\Brand;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Attribute;
+
 
 class ProductController extends Controller
 {
@@ -16,7 +18,8 @@ class ProductController extends Controller
 public function index()
 {
 
-    $products = Product::with('user','brand')->get();
+    // $products = Product::with('user','brand', 'attributes.values')->get();
+        $products = Product::with(['user','brand','attributes.values'])->get();
 
     return view('welcome', compact('products'));
 }

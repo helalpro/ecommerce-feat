@@ -16,4 +16,10 @@ class Product extends Model
     {
         return $this->belongsTo(Brand::class);
     }
+
+    public function attributes()
+    {
+        return $this->belongsToMany(Attribute::class, 'product_attributes');
+    }
 }
+
